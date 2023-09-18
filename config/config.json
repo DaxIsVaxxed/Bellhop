@@ -1,0 +1,19 @@
+  {
+  "dev_mode": true,
+  "token": "MTEyODg3NjE3NTYzNzM2MDc4MQ.GaQuVw.NbFzFn5cbwZkaLhvhlZEhQ7Z8gs3owJnMAx0O4",
+  "dev_token": "MTAwNDY1NDAzNTUzOTg2OTY5OQ.GpmPDu.CBV8pPEYiq7VJaXv1QmL7ERx9cGevW73c8Q8fE",
+  "sentry_dsn": "https://da8d3d4385b744cf8a73be96348cedb2@o4504784230350848.ingest.sentry.io/4504784231333888",
+  "owners": [970570457269018685],
+  "guilds": [1007455641352294551],
+  "dev_guilds": [1081719960495206460],
+  "embed_color": "0x5865F2",
+  "command_prefix": "o!",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "postgres",
+    "password": "postgres",
+    "database": "ain"
+  },
+  "version": "2.0.0"
+}

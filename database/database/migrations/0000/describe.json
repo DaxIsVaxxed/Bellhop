@@ -1,0 +1,673 @@
+{
+    "tables": [
+        {
+            "name": "guilds",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_guilds_guild_id_primary_key",
+                "raw_sql": "CONSTRAINT _guilds_guild_id_primary_key PRIMARY KEY ( guild_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "client",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "client_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "maintenance_mode",
+                    "type_": "BOOLEAN",
+                    "not_null": true
+                },
+                {
+                    "name": "allowed_guilds",
+                    "type_": "BIGINT[]",
+                    "not_null": true
+                },
+                {
+                    "name": "support_channel_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_client_id_primary_key",
+                "raw_sql": "CONSTRAINT _client_id_primary_key PRIMARY KEY ( id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "verification_guild",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "verification_logging_channel",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "verification_questions",
+                    "type_": "TEXT[]",
+                    "not_null": true
+                },
+                {
+                    "name": "unverified_role_ids",
+                    "type_": "BIGINT[]",
+                    "not_null": true
+                },
+                {
+                    "name": "verified_role_ids",
+                    "type_": "BIGINT[]",
+                    "not_null": true
+                },
+                {
+                    "name": "verification_instructions",
+                    "type_": "TEXT",
+                    "not_null": false
+                },
+                {
+                    "name": "pending_verifications_channel_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "welcome_role_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "welcome_channel_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "welcome_message",
+                    "type_": "TEXT",
+                    "not_null": false
+                },
+                {
+                    "name": "joining_message",
+                    "type_": "TEXT",
+                    "not_null": false
+                },
+                {
+                    "name": "welcome_message_banner_url",
+                    "type_": "TEXT",
+                    "not_null": false
+                },
+                {
+                    "name": "staff_role_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_verification_guild_guild_id_primary_key",
+                "raw_sql": "CONSTRAINT _verification_guild_guild_id_primary_key PRIMARY KEY ( guild_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "verification_app",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "SERIAL",
+                    "not_null": true
+                },
+                {
+                    "name": "user_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "pending_verification_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "questioning",
+                    "type_": "BOOLEAN",
+                    "not_null": true
+                },
+                {
+                    "name": "questioning_channel_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_verification_app_id_primary_key",
+                "raw_sql": "CONSTRAINT _verification_app_id_primary_key PRIMARY KEY ( id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "economy_role_income",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "SERIAL",
+                    "not_null": true
+                },
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "role_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "min_income",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "max_income",
+                    "type_": "INTEGER",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_economy_role_income_id_primary_key",
+                "raw_sql": "CONSTRAINT _economy_role_income_id_primary_key PRIMARY KEY ( id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "economy_role_multiplier",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "SERIAL",
+                    "not_null": true
+                },
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "role_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "multiplier",
+                    "type_": "REAL",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_economy_role_multiplier_id_primary_key",
+                "raw_sql": "CONSTRAINT _economy_role_multiplier_id_primary_key PRIMARY KEY ( id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "purchasable_role",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "SERIAL",
+                    "not_null": true
+                },
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "role_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "price",
+                    "type_": "INTEGER",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_purchasable_role_id_primary_key",
+                "raw_sql": "CONSTRAINT _purchasable_role_id_primary_key PRIMARY KEY ( id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "economy_guild",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_enabled",
+                    "type_": "BOOLEAN",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_currency",
+                    "type_": "TEXT",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_currency_on_left",
+                    "type_": "BOOLEAN",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_starting_balance",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_maximum_balance",
+                    "type_": "INTEGER",
+                    "not_null": false
+                },
+                {
+                    "name": "economy_message_earnings_min",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_message_earnings_max",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_daily_amount_min",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_daily_amount_max",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_work_amount_min",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_work_amount_max",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_server_multiplier",
+                    "type_": "REAL",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_earnable_messages_per_min",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "economy_log_channel",
+                    "type_": "BIGINT",
+                    "not_null": false
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_economy_guild_guild_id_primary_key",
+                "raw_sql": "CONSTRAINT _economy_guild_guild_id_primary_key PRIMARY KEY ( guild_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "economy_user",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "user_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "balance",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "last_daily",
+                    "type_": "DATE",
+                    "not_null": false
+                },
+                {
+                    "name": "last_message",
+                    "type_": "DATE",
+                    "not_null": false
+                },
+                {
+                    "name": "last_work",
+                    "type_": "DATE",
+                    "not_null": false
+                },
+                {
+                    "name": "last_role_income",
+                    "type_": "DATE",
+                    "not_null": false
+                },
+                {
+                    "name": "multiplier",
+                    "type_": "REAL",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_economy_user_guild_id_user_id_primary_key",
+                "raw_sql": "CONSTRAINT _economy_user_guild_id_user_id_primary_key PRIMARY KEY ( guild_id , user_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "modmail",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "SERIAL",
+                    "not_null": true
+                },
+                {
+                    "name": "user_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "modmail_channel_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "no_dm",
+                    "type_": "BOOLEAN",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_modmail_id_primary_key",
+                "raw_sql": "CONSTRAINT _modmail_id_primary_key PRIMARY KEY ( id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "modmail_guild",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "modmail_category_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "modmail_log_channel_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "modmail_instruction",
+                    "type_": "TEXT",
+                    "not_null": false
+                },
+                {
+                    "name": "modmail_staff_role_id",
+                    "type_": "BIGINT",
+                    "not_null": false
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_modmail_guild_guild_id_primary_key",
+                "raw_sql": "CONSTRAINT _modmail_guild_guild_id_primary_key PRIMARY KEY ( guild_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "leveling_guild",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_enabled",
+                    "type_": "BOOLEAN",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_xp_per_message_min",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_xp_per_message_max",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_xp_per_message_levelup_msg",
+                    "type_": "TEXT",
+                    "not_null": false
+                },
+                {
+                    "name": "leveling_xp_per_message_levelup_channel",
+                    "type_": "BIGINT",
+                    "not_null": false
+                },
+                {
+                    "name": "leveling_server_multiplier",
+                    "type_": "REAL",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_xp_base",
+                    "type_": "REAL",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_earnable_messages_per_min",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "leveling_blacklisted_channel",
+                    "type_": "BIGINT[]",
+                    "not_null": false
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_leveling_guild_guild_id_primary_key",
+                "raw_sql": "CONSTRAINT _leveling_guild_guild_id_primary_key PRIMARY KEY ( guild_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "leveling_role_multiplier",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "role_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "multiplier",
+                    "type_": "REAL",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_leveling_role_multiplier_role_id_primary_key",
+                "raw_sql": "CONSTRAINT _leveling_role_multiplier_role_id_primary_key PRIMARY KEY ( role_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "leveling_roles",
+            "fields": [
+                {
+                    "name": "id",
+                    "type_": "SERIAL",
+                    "not_null": true
+                },
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "level",
+                    "type_": "INTEGER",
+                    "not_null": true
+                },
+                {
+                    "name": "role_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_leveling_roles_guild_id_id_primary_key",
+                "raw_sql": "CONSTRAINT _leveling_roles_guild_id_id_primary_key PRIMARY KEY ( guild_id , id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "leveling_user",
+            "fields": [
+                {
+                    "name": "guild_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "user_id",
+                    "type_": "BIGINT",
+                    "not_null": true
+                },
+                {
+                    "name": "xp",
+                    "type_": "INTEGER",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "_leveling_user_guild_id_user_id_primary_key",
+                "raw_sql": "CONSTRAINT _leveling_user_guild_id_user_id_primary_key PRIMARY KEY ( guild_id , user_id )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        },
+        {
+            "name": "_migrations",
+            "fields": [
+                {
+                    "name": "id_",
+                    "type_": "INTEGER",
+                    "not_null": true
+                }
+            ],
+            "fk_constraints": [],
+            "pk_constraint": {
+                "name": "__migrations_id__primary_key",
+                "raw_sql": "CONSTRAINT __migrations_id__primary_key PRIMARY KEY ( id_ )"
+            },
+            "unique_constraints": [],
+            "check_constraints": [],
+            "exclude_constraints": []
+        }
+    ],
+    "indexes": []
+}
